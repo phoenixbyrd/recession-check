@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recession or Depression? — The Evidence, Explained Simply</title>
+<meta name="description" content="Is the US heading toward a recession or a second Great Depression? The evidence for and against, explained in plain English with real numbers and sources.">
+<style>
+:root{
+  --bg:#0d1117; --card:#161b22; --card2:#1c2330; --line:#2d3748;
+  --txt:#e8edf3; --dim:#9aa7b8; --faint:#6b7688;
+  --red:#ff6b6b; --redbg:rgba(255,107,107,.08);
+  --grn:#51d88a; --grnbg:rgba(81,216,138,.08);
+  --gold:#f5c518; --blue:#6cb6ff; --purple:#b392f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.65;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+header.hero{padding:52px 0 30px;text-align:center}
+.kicker{display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,197,24,.4);border-radius:999px;padding:6px 16px;margin-bottom:18px}
+h1{font-size:clamp(30px,7vw,44px);line-height:1.15;margin-bottom:14px}
+.hero p.sub{color:var(--dim);font-size:17px;max-width:560px;margin:0 auto}
+.verdict{margin:28px auto 0;max-width:600px;background:linear-gradient(135deg,#1a2333,#141a26);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:left}
+.verdict .vlabel{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.verdict p{font-size:16px}
+.verdict strong{color:var(--gold)}
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding:10px 0;margin:26px 0 0}
+nav.toc a{display:inline-block;color:var(--dim);text-decoration:none;font-size:14px;padding:8px 14px;border-radius:999px;margin-right:6px}
+nav.toc a:hover{background:var(--card2);color:var(--txt)}
+section{padding:44px 0 8px}
+h2{font-size:clamp(22px,5vw,30px);margin-bottom:6px}
+h2 .emoji{margin-right:8px}
+.sec-sub{color:var(--dim);margin-bottom:20px;font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.card.worry{border-left:4px solid var(--red)}
+.card.calm{border-left:4px solid var(--grn)}
+.card h3{font-size:17px;margin-bottom:6px;line-height:1.4}
+.card .nums{font-size:14px;color:var(--dim);margin:8px 0}
+.card .nums b{color:var(--txt)}
+.card .fam{background:var(--card2);border-radius:10px;padding:12px 14px;font-size:14px;margin-top:10px}
+.card .fam .fl{font-weight:700;color:var(--gold);display:block;margin-bottom:2px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.src{font-size:12.5px;color:var(--faint);margin-top:10px}
+.src a{color:var(--blue);text-decoration:none;word-break:break-all}
+.src a:hover{text-decoration:underline}
+details{margin-top:10px}
+details summary{cursor:pointer;color:var(--blue);font-size:14px;font-weight:600;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";color:var(--faint)}
+details[open] summary::before{content:"▾ "}
+.tabs{display:flex;gap:10px;margin-bottom:18px}
+.tabs button{flex:1;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--dim);font-size:16px;font-weight:700;cursor:pointer}
+.tabs button.active-worry{background:var(--redbg);border-color:var(--red);color:var(--red)}
+.tabs button.active-calm{background:var(--grnbg);border-color:var(--grn);color:var(--grn)}
+.gauge{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0}
+.gauge .glabel{font-size:14px;color:var(--dim);margin-bottom:6px}
+.gauge .bar{height:22px;background:#0a0d12;border-radius:999px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.gauge .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--grn),var(--gold) 55%,var(--red));transition:width 1.2s ease}
+.gauge .gval{font-size:26px;font-weight:800;margin:8px 0 2px}
+.gauge .gnote{font-size:13px;color:var(--faint)}
+.defgrid{display:grid;gap:12px}
+.def{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.def h3{color:var(--gold);margin-bottom:6px}
+.vs{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+.vs .side{border-radius:10px;padding:12px 14px;font-size:14px}
+.vs .match{background:rgba(245,197,24,.07);border:1px solid rgba(245,197,24,.3)}
+.vs .diff{background:rgba(108,182,255,.07);border:1px solid rgba(108,182,255,.3)}
+.vs .side b{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.vs .match b{color:var(--gold)} .vs .diff b{color:var(--blue)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:999px;padding:4px 12px;margin-bottom:8px}
+.tag.partly{background:rgba(245,197,24,.15);color:var(--gold)}
+.tag.weak{background:rgba(108,182,255,.15);color:var(--blue)}
+.tag.legit{background:rgba(255,107,107,.15);color:var(--red)}
+.watch{counter-reset:watch}
+.watch .card{display:flex;gap:14px;align-items:flex-start}
+.watch .wnum{flex:0 0 36px;height:36px;border-radius:50%;background:var(--card2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--gold)}
+footer{margin:50px 0 40px;padding-top:24px;border-top:1px solid var(--line);color:var(--faint);font-size:13px}
+footer a{color:var(--blue)}
+.note{background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.25);border-radius:12px;padding:16px;font-size:14px;color:var(--dim);margin:16px 0}
+.note b{color:var(--gold)}
+.big{font-size:15px;color:var(--dim)}
+.big b{color:var(--txt)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="kicker">Evidence check · Updated Sept 30, 2026</span>
+  <h1>Are we heading for a recession&hellip; or a second Great Depression?</h1>
+  <p class="sub">If your feed says an economic collapse is coming, here's how to check that claim — the real numbers, both sides, in plain English.</p>
+  <div class="verdict">
+    <div class="vlabel">The bottom line</div>
+    <p>The US is <strong>not in a recession</strong>, and <strong>no mainstream forecaster considers a second Great Depression a realistic scenario</strong>. The honest debate is narrower: banks put the chance of a <strong>mild recession in the next 12 months at roughly 1 in 3</strong>, while inflation is still running too hot at 3.4%. Read on for the evidence behind that sentence.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#words">Recession vs depression</a><a href="#now">Where we stand</a><a href="#evidence">The evidence</a><a href="#1929">Is this 1929 again?</a><a href="#watch">5 things to watch</a><a href="#sources">Sources</a>
+</nav>
+
+<section id="words">
+  <h2><span class="emoji">📖</span>First, what do the words even mean?</h2>
+  <p class="sec-sub">People use "recession" and "depression" loosely. Here's what they actually mean.</p>
+  <div class="defgrid">
+    <div class="def">
+      <h3>Recession = the economy catches a bad flu</h3>
+      <p class="big">A <b>significant decline in economic activity, spread across the whole economy, lasting more than a few months</b> — fewer goods made, fewer people hired, less money earned. A small group of economists at the <b>NBER</b> (a nonpartisan research nonprofit) officially decides when one started, usually <b>long after the fact</b>, by looking at GDP, income, jobs, factory output, and retail sales.</p>
+      <p class="big" style="margin-top:8px">⚠️ "Two straight quarters of shrinking GDP" is just a <b>rule of thumb</b>, not the official definition.</p>
+    </div>
+    <div class="def">
+      <h3>Depression = nobody officially declares one</h3>
+      <p class="big">There is <b>no official definition</b> and no committee that declares a depression. It's an informal word for a recession that is <b>extreme and lasts years</b>. America's only example: 1929–1939, when the economy shrank <b>~30%</b>, unemployment hit <b>~25%</b>, and <b>over 9,000 banks failed</b>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="now">
+  <h2><span class="emoji">📊</span>Where we stand right now</h2>
+  <p class="sec-sub">The latest numbers as of late September 2026. Think of this as the economy's report card.</p>
+
+  <div class="card"><h3>📈 Growth: slow but positive</h3>
+    <p class="nums">GDP grew <b>+1.5%/yr in Q2 2026</b> (+2.1% in Q1; +0.7% in Q4 2025 after a 43-day government shutdown). The current quarter is tracking around <b>~5%</b>, though early trackers often overshoot.</p>
+    <p class="src">Sources: BEA; Atlanta Fed GDPNow</p></div>
+
+  <div class="card"><h3>💼 Jobs: "low-hire, low-fire"</h3>
+    <p class="nums">Unemployment <b>4.1%</b> (Aug). 162,000 jobs added in August, but the 3-month average is only ~71k/month. 27% of the unemployed (~1.93M people) have been jobless long-term.</p>
+    <p class="src">Source: BLS via Reuters, Sept 4 2026</p></div>
+
+  <div class="card"><h3>🏷️ Prices: still rising too fast</h3>
+    <p class="nums">Inflation <b>3.4%/yr</b> (Aug CPI) — well above the Fed's 2% target. Pay rose 3.1%/yr, so <b>real paychecks shrank 0.3%</b> over the year. Gas is up ~27% in a year.</p>
+    <p class="src">Sources: BLS; BEA</p></div>
+
+  <div class="card"><h3>🏦 Interest rates: going UP, not down</h3>
+    <p class="nums">The Fed <b>raised</b> rates on Sept 16 to <b>3.75–4.00%</b> — its first hike since 2023 — and markets expect roughly one more this year. Borrowing is getting more expensive.</p>
+    <p class="src">Source: FOMC statement, Sept 16 2026</p></div>
+
+  <div class="card"><h3>🏠 Housing: brutal for buyers</h3>
+    <p class="nums">30-year mortgage <b>~7.0–7.1%</b>. Home sales at a 14-month low; median price <b>$429,100</b>. Affordability is the <b>worst in 21 years</b> — though sellers finally face the most competition in a decade.</p>
+    <p class="src">Sources: Freddie Mac; National Association of Realtors</p></div>
+
+  <div class="card"><h3>📉 Stocks: near record highs</h3>
+    <p class="nums">S&amp;P 500 around <b>7,700–7,800</b> — up 12–13% in 2026 and +35% since the tariffs were announced. Investors are optimistic&hellip; possibly <i>too</i> optimistic (see the worry section).</p>
+    <p class="src">Source: Morningstar</p></div>
+
+  <div class="card"><h3>🏭 Companies: record profits, record-low worker share</h3>
+    <p class="nums">Corporate profits hit a record <b>$4.8 trillion</b> — 17.9% of national income, the highest ever recorded. Workers' share of income is at a record <b>low</b>.</p>
+    <p class="src">Source: BEA, Q2 2026</p></div>
+
+  <div class="card"><h3>💳 Government debt: the credit card is maxed</h3>
+    <p class="nums">Federal deficit <b>~$2 trillion</b> this year; national debt <b>$40 trillion</b>. Interest payments now cost <b>more than defense spending</b> — which limits how much the government could spend to rescue the economy in a crisis.</p>
+    <p class="src">Sources: CBO/CRFB; IMF</p></div>
+</section>
+
+<section id="evidence">
+  <h2><span class="emoji">⚖️</span>The evidence, both sides</h2>
+  <p class="sec-sub">Tap a tab. Every card has the simple claim, the actual numbers, the source — and what it means for a regular family.</p>
+
+  <div class="tabs">
+    <button id="tabWorry" class="active-worry" onclick="showTab('worry')">🔴 Reasons to worry</button>
+    <button id="tabCalm" onclick="showTab('calm')">🟢 Reasons to stay calm</button>
+  </div>
+
+  <div class="gauge">
+    <div class="glabel">What the professional forecasters say: chance of a recession in the next 12 months</div>
+    <div class="bar"><div class="fill" id="gaugeFill" style="width:0%"></div></div>
+    <div class="gval">~1 in 3</div>
+    <div class="gnote">JPMorgan 35% · Goldman Sachs 30% · EY-Parthenon 40% · Moody's Mark Zandi ~49% (early/mid-2026 estimates). The NY Fed's yield-curve model says ~14% (Sept 2026). No mainstream institution assigns a meaningful probability to a depression.</div>
+  </div>
+
+  <div id="worryCards">
+
+    <div class="card worry"><h3>🔴 Tariffs are acting like a national sales tax</h3>
+      <p class="nums">The nonpartisan Tax Foundation estimates tariffs cost the average household <b>~$1,000 in 2025</b> and <b>~$1,300 in 2026</b>. The average tariff rate jumped from ~2% to <b>~10–22%</b> (estimates vary) — the highest in roughly <b>80–100 years</b>. NY Fed research finds Americans pay about <b>90%</b> of tariff costs. Coffee is up <b>34%</b>, ground beef <b>19%</b> since Dec 2024.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>Roughly $100+/month of your budget quietly goes to import taxes — hitting lower-income families hardest.</div>
+      <p class="src">Sources: Tax Foundation via Inc., Feb 2026 <a href="https://www.inc.com/leila-sheridan/new-study-trumps-tariffs-cost-americans-1000-last-year-and-2026-will-be-worse/91300414">link</a> · NY Fed research · BLS price data</p></div>
+
+    <div class="card worry"><h3>🔴 Consumers feel terrible — near the worst on record</h3>
+      <p class="nums">University of Michigan sentiment fell to <b>48.1</b> in Sept 2026 — the <b>second-lowest reading since 1952</b> (the record low was May 2026). Down 15% since January. People expect <b>4.6%</b> inflation over the next year.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>When everyone expects prices to keep rising, people pull back spending — and consumer spending is 70% of the economy.</div>
+      <p class="src">Sources: Reuters, Sept 25 2026 <a href="https://www.reuters.com/world/us/us-consumer-sentiment-eases-four-month-low-september-2026-09-25/">link</a> · CNN</p></div>
+
+    <div class="card worry"><h3>🔴 The Fed might be making a mistake by raising rates now</h3>
+      <p class="nums">The Fed hiked in September with growth already slowing (1.5% in Q2) and 10-year Treasury yields above 5%. Moody's chief economist Mark Zandi: <b>"The odds of a serious Fed policy mistake are uncomfortably high and rising."</b></p>
+      <div class="fam"><span class="fl">What it means for your family</span>Higher rates = pricier mortgages, car loans, and credit cards — right when budgets are already squeezed.</div>
+      <p class="src">Sources: FOMC statement Sept 16 2026 · Mark Zandi via Popular Economics Blog, Sept 2026</p></div>
+
+    <div class="card worry"><h3>🔴 Debt stress is concentrated and real</h3>
+      <p class="nums">Auto-loan serious delinquency hit <b>5.5% — worse than the worst of the Great Recession (5.3%)</b>. Credit-card delinquency ~9%. Total household debt: <b>$18.8 trillion</b>. The savings rate is just <b>3.0%</b>.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>A growing slice of Americans is falling behind on car and card payments — often the first crack before bigger trouble.</div>
+      <p class="src">Sources: NY Fed Q2 2026 Household Debt report via Fox Business, Aug 2026 <a href="https://foxbusiness.com/economy/new-york-fed-finds-credit-card-auto-loan-delinquencies-remain-elevated">link</a> · BEA</p></div>
+
+    <div class="card worry"><h3>🔴 Offices are in serious trouble</h3>
+      <p class="nums">Office-building loan delinquency hit <b>12–13%</b> in 2026 (records). <b>$875 billion</b> in commercial property loans come due in 2026, and over half may fail to refinance.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>Mostly a bank/investor problem for now — but it can tighten lending for everyone if it spreads.</div>
+      <p class="src">Source: Commercial Observer via Cred iQ, Sept 2026 <a href="https://commercialobserver.com/2026/09/office-cmbs-delinquency-rate-cred-iq/">link</a></p></div>
+
+    <div class="card worry"><h3>🔴 The stock market looks euphoric on shaky foundations</h3>
+      <p class="nums">On Sept 21, 2026, the S&amp;P 500 sat within 1% of a record high while <i>more</i> of its stocks hit new lows than new highs — something that's only happened twice before: <b>July 1929 and December 1999</b>. Smaller-company stocks are down 7%+ since August.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>Your 401(k) looks great, but the rally is carried by a handful of giant tech stocks — if they stumble, retirement accounts feel it fast.</div>
+      <p class="src">Source: SentimenTrader's Jason Goepfert via Benzinga/TradingView, Sept 2026 <a href="https://www.tradingview.com/news/benzinga:d3e7d07a1094b:0-s-p-500-nears-record-high-but-breadth-flashes-rare-1929-1999-signal-analyst-says-we-ve-never-in-almost-100-years-seen-breadth-this-bad/">link</a></p></div>
+
+    <div class="card worry"><h3>🔴 The forecasters' odds of recession are elevated, not trivial</h3>
+      <p class="nums">JPMorgan <b>35%</b>, Goldman Sachs <b>30%</b>, EY-Parthenon <b>40%</b>, Moody's Mark Zandi <b>~49%</b> chance of recession within 12 months (early/mid-2026 estimates). The NY Fed's yield-curve model: <b>13.9%</b> (Sept 2026).</p>
+      <div class="fam"><span class="fl">What it means for your family</span>The pros put the chance of a downturn at roughly 1-in-3 — worth preparing for, not panicking over.</div>
+      <p class="src">Sources: TheStreet <a href="https://www.thestreet.com/economy/goldman-sachs-resets-recession-risks-for-2026">link</a> · Economic Greenfield recession models, Sept 2026 <a href="https://www.economicgreenfield.com/2026/09/09/recession-probability-models-september-2026/">link</a></p></div>
+
+  </div>
+
+  <div id="calmCards" style="display:none">
+
+    <div class="card calm"><h3>🟢 The economy keeps absorbing punches and growing</h3>
+      <p class="nums">Despite 2025's tariff wave, a <b>43-day government shutdown</b>, a war with Iran pushing oil over <b>$100</b>, and a Fed rate hike — Q3 2026 GDP is tracking <b>~5%</b>, unemployment is <b>4.1%</b>, and August added 162,000 jobs. The IMF still expects <b>2.3%</b> US growth in 2026.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>The doomsday predictions keep not coming true — the economy is bending, not breaking.</div>
+      <p class="src">Sources: Atlanta Fed GDPNow <a href="https://fedpolicy.org/releases/2026-09-16/gdpnow-q3-2026/">link</a> · IMF July 2026 outlook via Reuters</p></div>
+
+    <div class="card calm"><h3>🟢 The AI investment boom is enormous and real</h3>
+      <p class="nums">AI infrastructure spending is projected at <b>$10.3 trillion</b> from 2025–2032 (Brookings) — about 3.6% of GDP per year, the biggest single-industry buildout since the 19th-century railroads. It contributes roughly <b>1.9% of GDP</b> in 2026 alone (Goldman Sachs).</p>
+      <div class="fam"><span class="fl">What it means for your family</span>This spending is creating jobs and keeping growth alive — though it also means the economy is increasingly riding on one bet.</div>
+      <p class="src">Source: WSJ, Sept 2026 <a href="https://www.wsj.com/economy/the-ai-build-out-is-becoming-the-biggest-economic-bet-in-u-s-history-c60716dd">link</a> · UCLA Anderson forecast</p></div>
+
+    <div class="card calm"><h3>🟢 Banks are far stronger than in 2008 — this was tested</h3>
+      <p class="nums">In the Fed's June 2026 stress test, <b>all 32 big banks survived</b> a hypothetical nightmare (stocks −58%, unemployment 10%, home prices −30%): their capital cushion fell from 12.8% to 11.2%, still miles above the 4.5% minimum, while absorbing <b>$708 billion</b> in losses.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>Your bank is very unlikely to collapse and take your savings with it, the way thousands did in the 1930s.</div>
+      <p class="src">Source: AP via Barchart, June 24 2026 <a href="https://www.barchart.com/story/news/2635361/all-32-of-the-nation-s-biggest-banks-clear-the-fed-s-annual-stress-test">link</a></p></div>
+
+    <div class="card calm"><h3>🟢 Safety nets exist now that didn't in 1929</h3>
+      <p class="nums"><b>FDIC insurance</b> (protects deposits up to $250,000) was created in 1933 <i>because</i> of the Depression. Unemployment insurance, Social Security, and food assistance <b>didn't exist in 1929</b>. The Fed can also cut rates — it's at 3.75–4%, so it has room — and print money. In the 1930s it was handcuffed by the gold standard and actually <b>raised</b> rates in 1931.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>If you lose your job, checks keep coming for a while — in 1930, there was nothing.</div>
+      <p class="src">Source: former Fed Chair Ben Bernanke on the Fed's Depression-era mistakes <a href="http://www.federalreserve.gov/boarddocs/speeches/2004/200403022/">link</a></p></div>
+
+    <div class="card calm"><h3>🟢 Corporate profits are at all-time highs</h3>
+      <p class="nums">Pre-tax corporate profits hit a record <b>$4.8 trillion</b> in Q2 2026 — 17.9% of national income, the highest share since records began in 1947. S&amp;P 500 earnings up 50% year-over-year.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>Profitable companies rarely do mass layoffs — though the flip side: workers' share of income is at a record <i>low</i>.</div>
+      <p class="src">Source: BEA, Q2 2026 <a href="https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-2nd-quarter-2026">link</a></p></div>
+
+    <div class="card calm"><h3>🟢 The classic warning signals have already cried wolf</h3>
+      <p class="nums">The yield curve was inverted 2022–2024 and the NY Fed model peaked near <b>70%</b> recession odds in 2023 — <b>no recession came</b>. The Conference Board's leading index "predicted" a recession from 2022–2024 that never arrived. The Sahm rule (unemployment trigger) currently reads <b>−0.07</b> — no signal.</p>
+      <div class="fam"><span class="fl">What it means for your family</span>The loudest alarms have a recent history of false alarms — take any single "the crash is coming" chart with a grain of salt.</div>
+      <p class="src">Source: Economic Greenfield recession models, Sept 2026 <a href="https://www.economicgreenfield.com/2026/09/09/recession-probability-models-september-2026/">link</a></p></div>
+
+  </div>
+</section>
+
+<section id="1929">
+  <h2><span class="emoji">🔍</span>Is this 1929 again?</h2>
+  <p class="sec-sub">The "second Great Depression" videos draw parallels to 1929–1932. Each one gets a fair hearing: what's actually similar, and what's different.</p>
+
+  <div class="card">
+    <span class="tag partly">Partly fair</span>
+    <h3>"Tariffs = Smoot-Hawley 2.0"</h3>
+    <div class="vs">
+      <div class="side match"><b>What's similar</b>Today's average tariff rate (~10–22%) is plausibly at or near 1930s levels — the highest in ~80–100 years. Retaliation did happen (EU, China).</div>
+      <div class="side diff"><b>What's different</b>Smoot-Hawley hit an economy <i>already collapsing</i>, with a gold standard and no safety nets; world trade fell 66%. Today's tariffs are used as negotiating leverage (deals, pauses, court-ordered rollbacks), and trade hasn't collapsed.</div>
+    </div>
+    <p class="src">Source: Smoot-Hawley comparison <a href="https://barberrycourt.com/article/how-the-smoot-hawley-tariff-act-compares-to-trump-s-reciprocal-tariffs">link</a></p>
+  </div>
+
+  <div class="card">
+    <span class="tag partly">Surface similarity, different plumbing</span>
+    <h3>"Stock speculation = 1929"</h3>
+    <div class="vs">
+      <div class="side match"><b>What's similar</b>Valuations are extreme, and that market-breadth signal last flashed in July 1929 and December 1999.</div>
+      <div class="side diff"><b>What's different</b>1929 had 10%-down margin buying and banks gambling with deposits. Today margin rules require 50% down, most households hold stocks via retirement accounts, and circuit breakers exist. A crash would hurt wealth — but the banking system wouldn't implode with it.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag weak">Weak parallel</span>
+    <h3>"Banks are stressed like the 1930s"</h3>
+    <div class="vs">
+      <div class="side match"><b>What's similar</b>Commercial real estate pain is real, and regional-bank jitters make headlines.</div>
+      <div class="side diff"><b>What's different</b>9,000+ banks failed 1929–33 with <i>no deposit insurance</i>. Today's big banks just passed a stress test worse than 2008; deposits are FDIC-insured to $250k; the 2023 bank failures cost no insured depositor a penny.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag partly">Directionally fair</span>
+    <h3>"Inequality = the 1920s"</h3>
+    <div class="vs">
+      <div class="side match"><b>What's similar</b>Profits' share of income is at a record high; workers' share at a record low. The "K-shaped economy" — rich thriving, bottom 60% squeezed — is widely documented.</div>
+      <div class="side diff"><b>What's different</b>In 1929, inequality plus a rigid financial system turned a crash into a depression. Today's inequality is cushioned by transfers and stabilizers — and affluent spending is <i>why</i> GDP is still growing. It's a social problem more than a mechanical depression trigger.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag legit">The most legitimate worry</span>
+    <h3>"The Fed is repeating 1930s mistakes"</h3>
+    <div class="vs">
+      <div class="side match"><b>What's similar</b>The Fed is hiking into slowing growth — echoes of 1931, when the Fed tightened into a downturn.</div>
+      <div class="side diff"><b>What's different</b>It's hiking from 3.75–4% to fight 3.4% inflation, not defending a gold peg. It has enormous room to cut and a proven playbook (2008, 2020). A policy <i>error</i> could cause a recession — but this Fed can reverse itself in a way the 1930s Fed couldn't.</div>
+    </div>
+    <p class="src">Source: Bernanke on Depression-era Fed mistakes <a href="http://www.federalreserve.gov/boarddocs/speeches/2004/200403022/">link</a></p>
+  </div>
+
+  <div class="note"><b>What would it actually take for a true depression?</b><br>Mainstream economists say you'd need a cascade, all at once: a severe oil/energy shock <i>plus</i> a Fed overtightening <i>plus</i> a genuine financial crisis with deposit losses <i>plus</i> a paralyzed government that refuses to stimulate. No major institution assigns a meaningful probability to that. The historical base rate is roughly <b>one in 100+ years</b>.</div>
+</section>
+
+<section id="watch">
+  <h2><span class="emoji">👀</span>5 things an ordinary person can watch</h2>
+  <p class="sec-sub">Forget the doom charts. These five are what actually matter over the next 6–12 months.</p>
+  <div class="watch">
+    <div class="card"><div class="wnum">1</div><div><h3>The unemployment rate</h3><p class="big">Published the first Friday of each month. If it climbs from <b>4.1% toward 5%+</b>, the "low-fire" job market is cracking.</p></div></div>
+    <div class="card"><div class="wnum">2</div><div><h3>Your receipts vs. your paycheck</h3><p class="big">Are your wages beating inflation? <b>Real wage growth staying negative</b> means consumers must eventually pull back — and they're 70% of the economy.</p></div></div>
+    <div class="card"><div class="wnum">3</div><div><h3>The Fed's next moves</h3><p class="big">Meetings in <b>October and December 2026</b>. More hikes = more pressure on borrowers. A pivot to cuts = the Fed sees trouble coming.</p></div></div>
+    <div class="card"><div class="wnum">4</div><div><h3>Layoff announcements</h3><p class="big">The monthly Challenger report tracks job cuts. ~<b>50k/month is normal-ish</b>; sustained <b>100k+ months</b> signal a layoff cycle.</p></div></div>
+    <div class="card"><div class="wnum">5</div><div><h3>Gas prices and oil headlines</h3><p class="big">With war-related oil over <b>$100</b>, energy is the wild card that could force inflation <i>and</i> a slowdown at the same time.</p></div></div>
+  </div>
+</section>
+
+<section id="sources">
+  <h2><span class="emoji">📚</span>Sources &amp; honesty notes</h2>
+  <p class="sec-sub">Every number above came from one of these, read Sept 30, 2026. None were live-verified in a browser session the same day.</p>
+  <div class="card">
+    <p class="src" style="margin-top:0">
+    NBER recession dating FAQ <a href="https://www.nber.org/research/business-cycle-dating/business-cycle-dating-procedure-frequently-asked-questions">nber.org</a><br>
+    BEA — Q2 2026 GDP &amp; corporate profits <a href="https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-2nd-quarter-2026">bea.gov</a><br>
+    BEA — Personal Income &amp; Outlays, July 2026 <a href="https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026">bea.gov</a><br>
+    BLS August jobs via Reuters, Sept 4 2026 <a href="https://www.reuters.com/business/us-nonfarm-payrolls-surge-august-unemployment-rate-steady-41-2026-09-04/">reuters.com</a><br>
+    FOMC Sept 16 rate decision <a href="https://latimesnow.com/2026/09/20/fed-rate-decision-september-2026-rates-rise-to-3-75-4/">latimesnow.com</a><br>
+    Freddie Mac / NAR housing data via Planet Today, Sept 2026 <a href="https://www.planet-today.com/2026/09/us-existing-home-sales-hit-14-month-low.html">planet-today.com</a><br>
+    S&amp;P 500 data, Morningstar <a href="https://www.morningstar.com/news/dow-jones/202609256128/sp-500-rises-121-this-week-to-774341-data-talk">morningstar.com</a><br>
+    NY Fed household debt via Fox Business, Aug 2026 <a href="https://foxbusiness.com/economy/new-york-fed-finds-credit-card-auto-loan-delinquencies-remain-elevated">foxbusiness.com</a><br>
+    Office CRE delinquency, Commercial Observer, Sept 2026 <a href="https://commercialobserver.com/2026/09/office-cmbs-delinquency-rate-cred-iq/">commercialobserver.com</a><br>
+    Tariff cost study, Tax Foundation via Inc., Feb 2026 <a href="https://www.inc.com/leila-sheridan/new-study-trumps-tariffs-cost-americans-1000-last-year-and-2026-will-be-worse/91300414">inc.com</a><br>
+    Michigan consumer sentiment, Reuters, Sept 25 2026 <a href="https://www.reuters.com/world/us/us-consumer-sentiment-eases-four-month-low-september-2026-09-25/">reuters.com</a><br>
+    Bank recession odds, TheStreet <a href="https://www.thestreet.com/economy/goldman-sachs-resets-recession-risks-for-2026">thestreet.com</a><br>
+    Recession probability models, Economic Greenfield, Sept 2026 <a href="https://www.economicgreenfield.com/2026/09/09/recession-probability-models-september-2026/">economicgreenfield.com</a><br>
+    Fed bank stress test results, AP via Barchart, June 24 2026 <a href="https://www.barchart.com/story/news/2635361/all-32-of-the-nation-s-biggest-banks-clear-the-fed-s-annual-stress-test">barchart.com</a><br>
+    AI buildout, WSJ, Sept 2026 <a href="https://www.wsj.com/economy/the-ai-build-out-is-becoming-the-biggest-economic-bet-in-u-s-history-c60716dd">wsj.com</a><br>
+    Atlanta Fed GDPNow <a href="https://fedpolicy.org/releases/2026-09-16/gdpnow-q3-2026/">fedpolicy.org</a><br>
+    1929 breadth signal, Benzinga/TradingView, Sept 2026 <a href="https://www.tradingview.com/news/benzinga:d3e7d07a1094b:0-s-p-500-nears-record-high-but-breadth-flashes-rare-1929-1999-signal-analyst-says-we-ve-never-in-almost-100-years-seen-breadth-this-bad/">tradingview.com</a><br>
+    Federal deficit, Fiscal Times, Sept 2026 <a href="https://www.thefiscaltimes.com/2026/09/09/Deficit-Hits-2-Trillion-Fiscal-Year-2026">thefiscaltimes.com</a><br>
+    Smoot-Hawley comparison <a href="https://barberrycourt.com/article/how-the-smoot-hawley-tariff-act-compares-to-trump-s-reciprocal-tariffs">barberrycourt.com</a>
+    </p>
+  </div>
+  <div class="note"><b>What we couldn't confirm:</b><br>
+  • The BEA's third Q2 GDP estimate and August income/spending report were both due <b>Sept 30, 2026</b> — likely after this research was compiled.<br>
+  • The most-cited bank recession odds (JPMorgan 35%, Goldman 30%, Zandi ~49%) date to <b>March 2026</b>; fresher post–Fed-hike updates weren't found.<br>
+  • Tariff-rate estimates span <b>10–22%</b> because rates changed 50+ times with deals, rollbacks, and court rulings — that's why we show the range, not one number.<br>
+  • <b>No mainstream institution publishes a "depression probability."</b> Any such number you see online is not from a reputable forecaster.</div>
+</section>
+
+<footer>
+  <p>Built as a one-time evidence explainer · Data current as of <b>Sept 30, 2026</b> · Not financial advice — just the numbers, both sides.<br>
+  If a video tells you a second Great Depression is coming, ask it for these five things: the actual numbers, the source, the date, what the other side says, and what would prove it wrong.</p>
+</footer>
+
+</div>
+<script>
+function showTab(which){
+  var w=document.getElementById('worryCards'),c=document.getElementById('calmCards');
+  var tw=document.getElementById('tabWorry'),tc=document.getElementById('tabCalm');
+  if(which==='worry'){w.style.display='block';c.style.display='none';tw.className='active-worry';tc.className='';}
+  else{w.style.display='none';c.style.display='block';tc.className='active-calm';tw.className='';}
+}
+window.addEventListener('load',function(){
+  setTimeout(function(){document.getElementById('gaugeFill').style.width='33%';},300);
+});
+</script>
+</body>
+</html>
